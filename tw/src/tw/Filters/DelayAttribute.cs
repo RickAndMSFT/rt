@@ -11,17 +11,19 @@ namespace MvcSample.Filters
   {
     public DelayAttribute(int milliseconds)
     {
-      Delay = TimeSpan.FromMilliseconds(milliseconds);
+      Delay = milliseconds;
+      Rand = new Random();
     }
 
-    public TimeSpan Delay { get; private set; }
+    public int Delay { get; private set; }
+    public Random Rand { get; private set; }
 
     public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
       if (context.HttpContext.Request.Method == "GET")
       {
         // slow down incoming GET requests
-        await Task.Delay(Delay);
+        await Task.Delay(Rand.Next(1, Delay));
       }
 
       var executedContext = await next();
@@ -29,7 +31,7 @@ namespace MvcSample.Filters
       if (executedContext.Result is ViewResult)
       {
         // slow down outgoing view results
-        await Task.Delay(Delay);
+        await Task.Delay(Rand.Next(0, Delay));
       }
     }
   }
