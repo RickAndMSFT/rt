@@ -7,7 +7,7 @@ using MvcSample.Filters;
 namespace tw.Controllers
 {
   [UseStopwatch]
-  [Delay(5, Order =-1)]  
+  [Delay(0, 500, Order = -1)]
   public class HomeController : Controller
     {
         public IActionResult Index()
