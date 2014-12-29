@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNet.Mvc;
-using MvcSample.Filters; 
+using MvcSample.Filters;
 
 namespace tw.Controllers
 {
-  [UseStopwatch]
-  [Delay(0, 500, Order = -1)]
-  public class HomeController : Controller
+    [UseStopwatch]
+    [Delay(0, 500, Order = -1)]
+    public class HomeController : Controller
     {
         public IActionResult Index()
         {
@@ -21,8 +21,9 @@ namespace tw.Controllers
 
             return View();
         }
-    [Delay(500)]
-    public IActionResult Contact()
+
+        [Delay(500)]
+        public IActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
