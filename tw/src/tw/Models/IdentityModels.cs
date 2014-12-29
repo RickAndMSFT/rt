@@ -24,7 +24,7 @@ namespace tw.Models
             // are supported in ASP.NET 5
             if (!_created)
             {
-                Database.AsRelational().ApplyMigrations();
+                Database.AsRelational().AsMigrationsEnabled();
                 _created = true;
             }
         }
